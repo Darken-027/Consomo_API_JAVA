@@ -24,6 +24,8 @@ public class App {
                 response.append(line);
             }
             reader.close(); 
+            System.out.println("Respuesta de la API: " + response.toString());
+            connection.disconnect();
         }else{
             throw new RuntimeException("Error al conectar a la API Code : " + responseCode);
         }
