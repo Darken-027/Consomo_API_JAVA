@@ -1,3 +1,5 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.concurrent.ExecutionException;
@@ -14,7 +16,14 @@ public class App {
         int responseCode = connection.getResponseCode();
 
         if(responseCode == 200){
-            
+            BufferedReader reader =  new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            StringBuilder response = new StringBuilder();
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                response.append(line);
+            }
+            reader.close(); 
         }else{
             throw new RuntimeException("Error al conectar a la API Code : " + responseCode);
         }
